@@ -1,0 +1,80 @@
+.authWrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    padding: 20px;
+  }
+  
+  .formBox {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .formTitle {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #222;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .input:focus {
+    border-color: #0074d9;
+    outline: none;
+  }
+  
+  .button {
+    width: 100%;
+    background-color: #0074d9;
+    color: #fff;
+    padding: 12px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .button:hover {
+    background-color: #005fa3;
+  }
+  
+  .switchText {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 18px;
+    color: #555;
+  }
+  
+  .switchLink {
+    color: #0074d9;
+    cursor: pointer;
+    margin-left: 6px;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+  
+  .message {
+    font-size: 13px;
+    text-align: center;
+    color: #d00000;
+    margin-top: 6px;
+  }
+  
