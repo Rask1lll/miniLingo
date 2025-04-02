@@ -33,10 +33,17 @@ function App() {
   }, []);
 
   const handleStartLesson = async (lessonInfo) => {
+    console.log('Стартуем урок:', lessonInfo);
+    if (!lessonInfo || !lessonInfo._id) {
+      console.error('lessonInfo пуст или без _id!');
+      return;
+    }
+  
     const res = await fetch(`http://localhost:5000/api/lessons/${lessonInfo._id}`);
     const fullLesson = await res.json();
     setCurrentLesson(fullLesson);
   };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('userId');

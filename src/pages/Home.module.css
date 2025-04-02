@@ -1,61 +1,124 @@
 .container {
-    padding: 50px;
-  }
-  
-  .title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .lessonGrid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  
-  .lessonCard {
-    text-align: center;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    height: 200%;
-  }
-  
-  .lessonCard:hover {
-    transform: translateY(-3px);
-  }
-  
-  .logoutBtn {
-    margin-top: 24px;
-    background: #e53935;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .filterButtons {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .filterButtons button {
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background: #f4f4f4;
-    cursor: pointer;
-  }
-  
-  .activeFilter {
-    background: #0074d9;
-    color: white;
-    border-color: #0074d9;
-  }
-  
+  padding: 20px;
+}
+
+.title {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-bottom: 15px;
+  color: #777;
+  font-size: 15px;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.filterButtons button {
+  padding: 6px 12px;
+  border: none;
+  background: #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.activeFilter {
+  background: #0074d9;
+  color: white;
+}
+
+.lessonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin-top: 16px;
+  gap: 15px; /* <-- вот это добавь */
+}
+
+
+.lessonCard {
+  background: #f4f4f4;
+  padding: 50px 0 0 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #ddd;
+  min-width: 250px;
+  min-height: 150px;
+  scroll-snap-align: start;
+  padding-left: 20px;
+}
+
+.lessonCard:hover {
+  background-color: #eaeaea;
+}
+
+.completedTag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.carouselWrapper {
+  overflow-x: auto;
+  padding-top: 12px;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselWrapper {
+  overflow-x: auto;
+  padding-top: 12px;
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.lessonCard {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #ddd;
+  min-width: 240px;
+  height: 140px;
+  scroll-snap-align: start;
+  flex-shrink: 0; /* важно для карусели */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

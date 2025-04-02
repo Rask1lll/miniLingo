@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './LessonPage.module.css';
 import LetterGame from '../components/games/LetterGame';
+import ImageGame from '../components/games/ImageGame';
 
 const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
@@ -37,45 +38,68 @@ const LessonPage = ({ lesson, user, updateUser }) => {
   const [submitted, setSubmitted] = useState(false);
   const [finished, setFinished] = useState(false);
 
-  const currentWord = lesson.words[index];
+  const currentWord = lesson?.words?.[index];
 
-  // prepare options for choice-type
   useEffect(() => {
-    if (!currentWord || currentWord.type !== 'choice') return;
-
-    const otherTranslations = shuffleArray(
-      lesson.words.filter((w) => w._id !== currentWord._id)
-    )
-      .slice(0, 3)
-      .map(w => w.translation);
-
-    const choices = shuffleArray([
-      currentWord.translation,
-      ...otherTranslations
-    ]);
-
-    setOptions(choices);
-    setSelected(null);
+    if (!currentWord) return;
+  
+    if (currentWord.type === 'choice') {
+      const otherTranslations = shuffleArray(
+        lesson.words.filter(w => w._id !== currentWord._id)
+      )
+        .slice(0, 3)
+        .map(w => w.translation);
+  
+      const allOptions = shuffleArray([
+        currentWord.translation,
+        ...otherTranslations,
+      ]);
+  
+      setOptions(allOptions);
+      setSelected(null);
+    }
+  
+    if (currentWord.type === 'image') {
+      const otherWords = shuffleArray(
+        lesson.words.filter(w => w._id !== currentWord._id)
+      )
+        .slice(0, 3)
+        .map(w => w.word); // ← английские слова
+  
+      const allOptions = shuffleArray([
+        currentWord.word,
+        ...otherWords,
+      ]);
+  
+      setOptions(allOptions);
+      setSelected(null);
+    }
   }, [index, currentWord, lesson.words]);
+  
 
-  const handleChoiceSelect = (option) => {
+  const handleSelect = (option) => {
     if (selected) return;
+  
     setSelected(option);
-
-    const isCorrect = option === currentWord.translation;
+  
+    const isCorrect =
+      currentWord.type === 'image'
+        ? option === currentWord.word
+        : option === currentWord.translation;
+  
     if (isCorrect) {
-      setXp(xp + 1);
+      setXp(prev => prev + 1);
       setFlash('correct');
     } else {
       setFlash('incorrect');
     }
-
+  
     setTimeout(() => {
       setFlash('');
-      setIndex((prev) => prev + 1);
-    }, 1200);
+      setIndex(prev => prev + 1);
+    }, 1000);
   };
-
+  
   const handleLetterAnswer = (isCorrect) => {
     if (isCorrect) {
       setXp(xp + 1);
@@ -87,7 +111,7 @@ const LessonPage = ({ lesson, user, updateUser }) => {
     setTimeout(() => {
       setFlash('');
       setIndex((prev) => prev + 1);
-    }, 1200);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -116,6 +140,10 @@ const LessonPage = ({ lesson, user, updateUser }) => {
         .catch(console.error);
     }
   }, [currentWord, submitted, xp, user, lesson._id, updateUser]);
+
+  if (!lesson || !lesson.words || lesson.words.length === 0) {
+    return <div className={styles.lessonContainer}>Нет доступных слов для этого урока.</div>;
+  }
 
   if (finished) {
     return (
@@ -149,9 +177,11 @@ const LessonPage = ({ lesson, user, updateUser }) => {
         {currentWord.type === 'choice' && (
           <>Переведите слово: <span style={{ color: '#0074D9' }}>{currentWord.word}</span></>
         )}
-
         {currentWord.type === 'letter' && (
           <>Составьте слово из букв по переводу: <span style={{ color: '#0074D9' }}>{currentWord.translation}</span></>
+        )}
+        {currentWord.type === 'image' && (
+          <>Выберите перевод по картинке:</>
         )}
       </div>
 
@@ -160,7 +190,7 @@ const LessonPage = ({ lesson, user, updateUser }) => {
           wordObj={currentWord}
           options={options}
           selected={selected}
-          onSelect={handleChoiceSelect}
+          onSelect={handleSelect}
         />
       )}
 
@@ -168,6 +198,14 @@ const LessonPage = ({ lesson, user, updateUser }) => {
         <LetterGame
           wordObj={currentWord}
           onAnswer={handleLetterAnswer}
+        />
+      )}
+
+      {currentWord.type === 'image' && (
+        <ImageGame
+          wordObj={{ ...currentWord, options }}
+          onSelect={handleSelect}
+          selected={selected}
         />
       )}
     </div>

@@ -1,0 +1,33 @@
+.carouselContainer {
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  .scrollArea {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  
+  .scrollArea::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .card {
+    min-width: 200px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: #f4f4f4;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #ddd;
+  }
+  
+  .card:hover {
+    background-color: #eaeaea;
+  }
+  
