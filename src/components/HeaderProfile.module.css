@@ -1,8 +1,7 @@
 .wrapper {
   position: absolute;
-  top: 20px;
   right: 20px;
-  z-index: 10;
+  z-index: 50;
 }
 
 .wrapperActive .popup {
@@ -11,7 +10,7 @@
 }
 
 .popup {
-  position: absolute;
+  position: fixed;
   top: 56px;
   right: 0;
   background: white;
@@ -25,12 +24,12 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, visibility 0.2s ease;
-  z-index: 999;
+  z-index: 50;
 }
 
 .logoutBtn {
   margin-top: 12px;
-  background: #e53935;
+  background: #e53935 !important;
   color: white;
   border: none;
   padding: 8px;
@@ -61,6 +60,7 @@
     border: 2px solid white;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     transition: transform 0.2s ease;
+    position: sticky;
   }
   
   .avatar:hover {

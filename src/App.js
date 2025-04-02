@@ -3,12 +3,14 @@ import Home from './pages/Home';
 import LessonPage from './pages/LessonPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import HeaderProfile from './components/HeaderProfile';
+import Navbar from './components/Navbar';
+import Leaderboard from './pages/Leaderboard';
+
 
 function App() {
   const [user, setUser] = useState(null);
   const [currentLesson, setCurrentLesson] = useState(null);
-  const [view, setView] = useState('home');
+  const [view, setView] = useState('loading');
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
@@ -20,30 +22,27 @@ function App() {
     fetch(`http://localhost:5000/api/user/profile/${userId}`)
       .then(res => res.json())
       .then(data => {
-        console.log('Получен профиль:', data);
         setUser({ ...data, id: userId });
         setView('home');
       })
-      .catch(err => {
-        console.error('Ошибка при получении профиля:', err);
+      .catch(() => {
         localStorage.removeItem('userId');
         setUser(null);
         setView('login');
       });
   }, []);
 
+  const handleLogin = (userData) => {
+    localStorage.setItem('userId', userData._id);
+    setUser({ ...userData, id: userData._id });
+    setView('home');
+  };
+
   const handleStartLesson = async (lessonInfo) => {
-    console.log('Стартуем урок:', lessonInfo);
-    if (!lessonInfo || !lessonInfo._id) {
-      console.error('lessonInfo пуст или без _id!');
-      return;
-    }
-  
     const res = await fetch(`http://localhost:5000/api/lessons/${lessonInfo._id}`);
     const fullLesson = await res.json();
     setCurrentLesson(fullLesson);
   };
-  
 
   const handleLogout = () => {
     localStorage.removeItem('userId');
@@ -51,29 +50,36 @@ function App() {
     setView('login');
   };
 
-  if (view === 'login') return <Login onSwitch={setView} />;
+  if (view === 'loading') return <div className="p-4">Загрузка...</div>;
+  if (view === 'login') return <Login onSwitch={setView} onLogin={handleLogin} />;
   if (view === 'register') return <Register onSwitch={setView} />;
-  if (!user) return <div className="p-4">Загрузка профиля...</div>;
+
   return (
-    <div className="min-h-screen bg-gray-100 relative px-4 pt-16">
-  <HeaderProfile user={user} />
-  
-  <div className="max-w-screen-md mx-auto bg-white p-6 rounded shadow">
-    {!currentLesson ? (
-      <Home
-        user={user}
-        onStartLesson={handleStartLesson}
-        onLogout={handleLogout}
-      />
-    ) : (
-      <LessonPage
-        lesson={currentLesson}
-        user={user}
-        updateUser={setUser}
-      />
-    )}
-  </div>
-</div>
+    <div className="min-h-screen bg-gray-100 pt-16">
+    <Navbar currentPage={view} setView={setView} user={user} />
+
+      <div className="max-w-screen-md mx-auto bg-white p-6 rounded shadow mt-4">
+        {currentLesson ? (
+          <LessonPage
+            lesson={currentLesson}
+            user={user}
+            updateUser={setUser}
+          />
+        ) : view === 'home' ? (
+          <Home
+            user={user}
+            onStartLesson={handleStartLesson}
+            onLogout={handleLogout}
+          />
+        ) : view === 'training' ? (
+          <div>Страница обучения (в разработке)</div>
+        ) : view === 'leaderboard' ? (
+          <div>Топ игроков (в разработке)</div>
+        ) : null}
+        {view === 'leaderboard' && <Leaderboard />}
+
+      </div>
+    </div>
   );
 }
 

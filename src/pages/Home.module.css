@@ -1,7 +1,9 @@
 .container {
   padding: 20px;
 }
-
+body{
+  margin-top: 50px;
+}
 .title {
   margin-top: 5px;
   margin-bottom: 20px;
@@ -87,7 +89,7 @@
 }
 
 .carousel::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 .carouselWrapper {
@@ -121,4 +123,50 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.easyCard {
+  background-color: #ffffff !important;
+}
+
+.mediumCard {
+  background-color: #fff6cc !important; /* мягкий жёлтый */
+}
+
+.hardCard {
+  background-color: #ffe0e0 !important; /* мягкий красный */
+}
+
+.lessonCard {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lessonCard:hover {
+  transform: scale(1.02);
+}
+
+.completedTag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.lockedTag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
 }

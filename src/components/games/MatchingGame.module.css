@@ -1,0 +1,59 @@
+.matchingContainer {
+    padding: 20px;
+  }
+  
+  .columns {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .wordCard,
+  .translationCard {
+    padding: 10px 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .selected {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .successMessage {
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+    color: #2ecc71;
+  }
+  
+  .error {
+    background-color: #f44336 !important;
+    color: white;
+    animation: shake 0.4s;
+  }
+  
+  .shake {
+    animation: shake 0.4s;
+    background-color: #f44336 !important;
+    color: white;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+  }
+  
