@@ -1,49 +1,67 @@
 .container {
     padding: 20px;
     text-align: center;
+    margin: 0 300px;
   }
   
   .title {
     margin-bottom: 20px;
     font-size: 24px;
-    font-weight: bold;
   }
   
   .list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
   
   .card {
     display: flex;
     align-items: center;
-    background: #f7f7f7;
-    border-radius: 10px;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: 0.2s;
+  }
+  
+  .card:hover {
+    background: #f1f1f1;
   }
   
   .rank {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    margin-right: 20px;
+    width: 40px;
+    text-align: center;
+    color: #555;
   }
   
   .avatar {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+    background-color: #0074D9;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .info {
     text-align: left;
   }
   
-  .name {
-    font-weight: bold;
+  .username {
+    font-weight: 600;
     font-size: 18px;
+  }
+  
+  .meta {
+    font-size: 14px;
+    color: #666;
   }
   

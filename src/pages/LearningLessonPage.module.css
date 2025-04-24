@@ -1,0 +1,92 @@
+.container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.progressBar {
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.theory {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.questionBlock {
+  margin-top: 16px;
+}
+
+.questionBlock h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.options button {
+  padding: 12px 18px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: all 0.2s ease;
+}
+
+.options button:hover {
+  background-color: #ececec;
+}
+
+.correct {
+  background-color: #c8e6c9;
+  border-color: #66bb6a;
+  color: #2e7d32;
+}
+
+.incorrect {
+  background-color: #ffcdd2;
+  border-color: #e57373;
+  color: #c62828;
+}
+
+.nextbtn,
+.okButton {
+  margin-top: 24px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nextbtn:hover,
+.okButton:hover {
+  background-color: #1565c0;
+}

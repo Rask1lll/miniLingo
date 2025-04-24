@@ -25,9 +25,6 @@ const Navbar = ({ currentPage, setView, user }) => {
           Топ игроков
         </button>
       </div>
-      <div className={styles.profileRight}>
-        <HeaderProfile user={user} />
-      </div>
     </nav>
   );
 };
